@@ -18,18 +18,12 @@ fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627')
       let positions = data.structure.dimensions.series[0].values
       let positionsDescriptions = []
       let i = 0
-
-      positions.forEach((position) => {
-        console.log(position);
-        positions_ids.forEach((positions_id) => {
-          if (position.id == positions_id) {
-            console.log("pos id: ", position.id);
-            console.log(positions_id);
-            let item = {"id":position.id, "name":position.name, "text":texts[i]}
+      positions_ids.forEach((positions_id) => {
+        let line = getPositionById(positions_id, positions);
+        console.log(line.id)
+            let item = {"id":line.id, "name":line.name, "text":texts[i]}
             positionsDescriptions.push(item)
             i++
-          }
-        });
       });
       console.log(positionsDescriptions);
       positionsDescriptions.forEach((position) => {
@@ -46,5 +40,14 @@ function appendData (data){
   positionContainer.classList.add('job')
   positionContainer.innerHTML = '<div class="title">' + data.text + '</div>'
   mainContainer.append(positionContainer)
+}
 
+function getPositionById (number, obj) {
+  let result
+  obj.forEach((line) => {
+    if (line.id == number) {
+      result = line
+    }
+  });
+  return result
 }
