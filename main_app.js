@@ -9,6 +9,8 @@ const GENDER = {
   }
   const TEN = 0
   const FOURTEEN = 1
+
+  let total = 0
   
   fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627')
     .then(function (response) {
@@ -33,17 +35,21 @@ const GENDER = {
         positionsDescriptions.forEach((position) => {
           appendData(position)
         });
+        
       })
     .catch(function (err) {
       console.log(err);
   });
   
-  function appendData (data){
+  function appendData (data) {
     const mainContainer = document.getElementById("container")
     let positionContainer = document.createElement('div')
     positionContainer.classList.add('row')
-    positionContainer.innerHTML = '<div class="job">' + data.text + '</div>' + '<div class="hour">' + '<input type="number">' + '</div>'+'<div class="sum">' + data.salary + '</div>'
+    positionContainer.innerHTML = '<div class="job">' + data.text + '</div>' + '<div class="hour">' + '<input type="number">' + '</div>'+'<div class="sum">' + '</div>'
     mainContainer.append(positionContainer)
+    positionContainer.querySelector(".hour input").addEventListener("change", function(){ calculate(event, data.salary, positionContainer.querySelector(".sum")) })
+    
+
   }
   
   function getPositionById (number, obj) {
@@ -54,4 +60,18 @@ const GENDER = {
       }
     });
     return result
+  }
+
+  function calculate (event, rate, sumDiv) {
+    const sum = event.currentTarget.value * rate[0]
+    total -= sumDiv.innerHTML.replace(",", ".")
+    sumDiv.innerHTML = (Math.round(sum * 100) / 100).toString().replace(".", ",")
+    if (sum === 0) {
+      sumDiv.innerHTML = ""
+    }
+    total += sum
+    console.log(total)
+    document.querySelector(".kogu-summa").innerHTML = (Math.round(total * 100) / 100).toString().replace(".", ",")
+
+
   }
