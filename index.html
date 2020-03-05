@@ -4,44 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption&display=swap" rel="stylesheet">
-    <title>mtu-emale</title>
+    <title>mtü-emale</title>
 </head>
 <body background="http://www.waxyleaves.com/simplewallpaper/blendlines_pastel/blendlines_pastel_1920x1080.jpg">
-    <h1>mtu-emale</h1>
-    <h2>v: 0.0.3</h2>
+    <h1>mtü-emale</h1>
     <div class="main-box">
         <div class="flex-tunnid-amet">
-            <div>Amet</div>
+            <div>Amet
+              <div class="ocupations" id="jobs"></div>
+            </div>
+
             <div>Tunnid</div>
         </div>
-
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Vali amet</button>
-            <div id="myDropdown" class="dropdown-content">
-              <a href="#nimi" class="trigger">Koristaja</a>
-              <div class="modal">
-              </div>
-              <a href="#nimi">Mehhaanik</a>
-              <a href="#nimi">Tarkvaraarendaja</a>
 <script type="text/javascript" src="stat_parser.js"></script>
-<script>
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
 
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-     var i;
-    for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-        }
-    }
-    }
-}
 </script>
 </body>
 </html>
