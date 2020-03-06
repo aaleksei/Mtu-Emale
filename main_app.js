@@ -12,7 +12,7 @@ const GENDER = {
 
   let total = 0
   
-  fetch('http://andmebaas.stat.ee/sdmx-json/data/PA627')
+  fetch('./PA627.json')
     .then(function (response) {
       return response.json();
     })
